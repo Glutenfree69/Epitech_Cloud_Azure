@@ -51,7 +51,7 @@ resource "azurerm_linux_web_app" "app" {
     "APP_NAME"         = "Laravel"
     "APP_ENV"          = "production"
     "APP_KEY"          = var.app_key
-    "APP_DEBUG"        = "false"
+    "APP_DEBUG"        = "true"
     "APP_URL"          = "https://${var.app_name}.azurewebsites.net"
     
     # Utiliser SQLite au lieu de MySQL
@@ -59,13 +59,19 @@ resource "azurerm_linux_web_app" "app" {
     "DB_DATABASE"      = "/home/site/wwwroot/database/database.sqlite"
     
     "LOG_CHANNEL"      = "stack"
-    "LOG_LEVEL"        = "error"
+    "LOG_LEVEL"        = "debug"
     
     # Optimisations Laravel pour production
     "CACHE_DRIVER"     = "file"
     "SESSION_DRIVER"   = "file"
     "QUEUE_CONNECTION" = "sync"
 
+    # CRITIQUES pour Laravel sur Azure
     "WEBSITES_DOCUMENT_ROOT" = "/home/site/wwwroot/public"
+    "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "true"
+    
+    # Chemins Laravel spécifiques
+    "VIEW_COMPILED_PATH" = "/home/site/wwwroot/storage/framework/views"
+    "CACHE_PATH" = "/home/site/wwwroot/storage/framework/cache"
   }
 }
