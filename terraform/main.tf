@@ -6,6 +6,12 @@ terraform {
       version = "~>3.0"
     }
   }
+
+    backend "s3" {
+    bucket = "state-yace"
+    key    = "azure/laravel-app/terraform.tfstate"
+    region = "eu-west-3"
+  }
 }
 
 provider "azurerm" {
@@ -64,13 +70,4 @@ resource "azurerm_linux_web_app" "app" {
     "PROJECT"          = "sample-app-master"
     "SCM_DO_BUILD_DURING_DEPLOYMENT" = "true"
   }
-}
-
-# Source control configuration
-resource "azurerm_app_service_source_control" "app" {
-  app_id                 = azurerm_linux_web_app.app.id
-  repo_url              = "https://github.com/Glutenfree69/Epitech_Cloud_Azure.git"
-  branch                = "main"
-  use_manual_integration = true
-  use_mercurial         = false
 }
