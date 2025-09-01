@@ -66,8 +66,6 @@ resource "azurerm_linux_web_app" "app" {
     "SESSION_DRIVER"   = "file"
     "QUEUE_CONNECTION" = "sync"
 
-    # Dire à Azure où chercher l'app Laravel
-    "PROJECT"          = "sample-app-master"
-    "SCM_DO_BUILD_DURING_DEPLOYMENT" = "true"
+    "WEBSITES_DOCUMENT_ROOT" = "/home/site/wwwroot/public"
   }
 }
