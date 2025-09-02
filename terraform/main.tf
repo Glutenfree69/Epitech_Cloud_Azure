@@ -69,7 +69,7 @@ resource "azurerm_linux_web_app" "app" {
     "QUEUE_CONNECTION" = "sync"
 
     # CRITIQUES pour Laravel sur Azure
-    "WEBSITES_DOCUMENT_ROOT" = "/home/site/wwwroot/public"
+    "WEBSITES_DOCUMENT_ROOT" = "/public"
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "true"
     
     # Chemins Laravel spécifiques
