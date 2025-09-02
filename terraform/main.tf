@@ -45,13 +45,15 @@ resource "azurerm_linux_web_app" "app" {
     application_stack {
       php_version = "8.2"
     }
+
+    app_command_line = "cd /home/site/wwwroot && php artisan migrate --force && chmod -R 777 database storage bootstrap/cache"
   }
 
   app_settings = {
     "APP_NAME"         = "Laravel"
     "APP_ENV"          = "production"
     "APP_KEY"          = var.app_key
-    "APP_DEBUG"        = "true"
+    "APP_DEBUG"        = "false"
     "APP_URL"          = "https://${var.app_name}.azurewebsites.net"
     
     # Utiliser SQLite au lieu de MySQL
