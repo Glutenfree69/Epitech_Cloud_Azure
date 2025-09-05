@@ -37,10 +37,11 @@ return [
 
         'sqlite' => [
             'driver' => 'sqlite',
-            'url' => env('DATABASE_URL'),
-            'database' => database_path('database.sqlite'),
+            #'url' => env('DATABASE_URL'),
+            'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+            'journal_mode' => 'WAL', // Important pour la performance avec volume réseau
         ],
 
         'mysql' => [
